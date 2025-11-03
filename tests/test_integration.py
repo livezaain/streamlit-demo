@@ -1,5 +1,4 @@
 """Integration tests for the Streamlit app."""
-import pytest
 from streamlit.testing.v1 import AppTest
 
 

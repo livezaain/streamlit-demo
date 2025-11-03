@@ -11,9 +11,14 @@ def sample_data():
         'category': ['Physics', 'Chemistry', 'Physics', 'Literature', 'Peace'],
         'sex': ['male', 'female', 'male', 'male', 'female'],
         'birth_country': ['Germany', 'Poland', 'France', 'USA', 'Sweden'],
-        'known_name': ['Person A', 'Person B', 'Person C', 'Person D', 'Person E'],
+        'known_name': [
+            'Person A', 'Person B', 'Person C', 'Person D', 'Person E'
+        ],
         'laureate_id': [1.0, 2.0, 3.0, 4.0, 5.0],
-        'motivation': ['For discovery A', 'For discovery B', 'For discovery C', 'For work D', 'For peace work'],
+        'motivation': [
+            'For discovery A', 'For discovery B', 'For discovery C',
+            'For work D', 'For peace work'
+        ],
         'is_shared': [0, 1, 0, 0, 1],
         'prize_amount': [100000, 100000, 100000, 100000, 100000]
     })
