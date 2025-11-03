@@ -33,9 +33,9 @@ def test_app_displays_metrics():
     assert len(at.metric) > 0, "App should display metrics"
 
 
-def test_app_has_download_button():
-    """Test that the app has a download button."""
+def test_app_has_dataframe():
+    """Test that the app displays a dataframe."""
     at = AppTest.from_file("app.py")
     at.run()
-    # Check for download button
-    assert len(at.download_button) > 0, "App should have a download button"
+    # Check for dataframe display
+    assert len(at.dataframe) > 0, "App should display dataframes"
