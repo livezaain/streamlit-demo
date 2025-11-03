@@ -204,14 +204,33 @@ def main():
         
         # Shared vs Solo prizes
         if 'is_shared' in filtered_df.columns:
-            st.write("**Shared vs Solo Prizes**")
-            shared_counts = filtered_df['is_shared'].value_counts()
-            labels = ['Solo', 'Shared']
-            values = [shared_counts.get(0, 0), shared_counts.get(1, 0)]
+            col1, col2 = st.columns(2)
             
-            fig4 = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
-            fig4.update_layout(title="Prize Sharing Distribution")
-            st.plotly_chart(fig4, use_container_width=True)
+            with col1:
+                st.write("**Shared vs Solo Prizes**")
+                shared_counts = filtered_df['is_shared'].value_counts()
+                labels = ['Solo', 'Shared']
+                values = [shared_counts.get(0, 0), shared_counts.get(1, 0)]
+                
+                fig4 = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+                fig4.update_layout(title="Prize Sharing Distribution")
+                st.plotly_chart(fig4, use_container_width=True)
+            
+            with col2:
+                st.write("**Prizes by Decade**")
+                # Calculate decade
+                filtered_df_copy = filtered_df.copy()
+                filtered_df_copy['decade'] = (filtered_df_copy['award_year'] // 10) * 10
+                decade_counts = filtered_df_copy.groupby('decade').size().reset_index(name='count')
+                
+                fig5 = px.bar(
+                    decade_counts,
+                    x='decade',
+                    y='count',
+                    title="Nobel Prizes by Decade",
+                    labels={'decade': 'Decade', 'count': 'Number of Prizes'}
+                )
+                st.plotly_chart(fig5, use_container_width=True)
     
     with tab3:
         st.subheader("Geographic Distribution")
@@ -229,7 +248,7 @@ def main():
         
         st.write("**Category Distribution in Top 5 Countries**")
         category_country = top_countries_df.groupby(['birth_country', 'category']).size().reset_index(name='count')
-        fig5 = px.bar(
+        fig6 = px.bar(
             category_country,
             x='birth_country',
             y='count',
@@ -237,7 +256,7 @@ def main():
             title="Prize Categories by Top 5 Countries",
             labels={'birth_country': 'Country', 'count': 'Number of Prizes'}
         )
-        st.plotly_chart(fig5, use_container_width=True)
+        st.plotly_chart(fig6, use_container_width=True)
     
     # Footer
     st.markdown("---")
