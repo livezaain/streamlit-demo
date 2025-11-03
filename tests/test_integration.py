@@ -39,4 +39,3 @@ def test_app_has_download_button():
     at.run()
     # Check for download button
     assert len(at.download_button) > 0, "App should have a download button"
-
